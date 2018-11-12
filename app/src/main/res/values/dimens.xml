@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="beach_card_margin">4dp</dimen>
+    <dimen name="beach_card_elevation">3dp</dimen>
+    <dimen name="beach_card_corner_radius">5dp</dimen>
+    <dimen name="beach_card_height">110dp</dimen>
+    <dimen name="element_default_margin">10dp</dimen>
+</resources>
