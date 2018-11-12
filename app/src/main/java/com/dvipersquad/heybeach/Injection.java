@@ -1,5 +1,7 @@
 package com.dvipersquad.heybeach;
 
+import com.dvipersquad.heybeach.auth.provider.AuthProvider;
+import com.dvipersquad.heybeach.auth.provider.CustomAuthProvider;
 import com.dvipersquad.heybeach.data.source.BeachRepository;
 import com.dvipersquad.heybeach.data.source.remote.BeachRemoteDataSource;
 import com.dvipersquad.heybeach.util.AppExecutors;
@@ -13,5 +15,9 @@ public class Injection {
 
     public static ImageLoader provideImageLoader() {
         return new CustomImageLoader(new AppExecutors());
+    }
+
+    public static AuthProvider provideAuthProvider() {
+        return CustomAuthProvider.getInstance(new AppExecutors());
     }
 }

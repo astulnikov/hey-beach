@@ -14,11 +14,17 @@ public interface BeachesContract {
 
         void showLoadingImagesError();
 
+        void showUserProfileUI();
+
+        void showUserLoginRegisterUI();
+
     }
 
     interface Presenter extends BasePresenter {
 
         void loadImages();
+
+        void openUserProfile();
 
     }
 }

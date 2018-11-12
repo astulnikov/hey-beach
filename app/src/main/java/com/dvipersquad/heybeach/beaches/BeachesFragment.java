@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -36,6 +39,7 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         beachesAdapter = new BeachesAdapter(new ArrayList<Beach>());
 
     }
@@ -58,6 +62,23 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.user_profile, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.showUserProfile:
+                presenter.openUserProfile();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void showImages(List<Beach> beaches) {
         beachesAdapter.replaceData(beaches);
     }
@@ -65,6 +86,14 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
     @Override
     public void showLoadingImagesError() {
         Snackbar.make(getView(), getString(R.string.error_loading_images), Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showUserProfileUI() {
+    }
+
+    @Override
+    public void showUserLoginRegisterUI() {
     }
 
     @Override

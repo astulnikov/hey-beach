@@ -28,6 +28,6 @@ public class BeachesActivity extends AppCompatActivity {
 
         // Create the presenter
         presenter = new BeachesPresenter(
-                Injection.provideBeachRepository(), beachesFragment);
+                Injection.provideBeachRepository(), beachesFragment, Injection.provideAuthProvider());
     }
 }

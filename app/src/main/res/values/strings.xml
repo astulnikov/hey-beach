@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Hey Beach</string>
     <string name="error_loading_images">We\'re sorry. There was an error loading the images. Please try again later</string>
+    <string name="show_user_profile">Show user profile</string>
 </resources>

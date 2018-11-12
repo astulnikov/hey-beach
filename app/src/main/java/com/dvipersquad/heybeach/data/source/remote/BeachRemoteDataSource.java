@@ -103,7 +103,7 @@ public class BeachRemoteDataSource implements BeachDataSource {
                     buffer.append(line + "\n");
                 }
                 Log.d(TAG, "response content: " + buffer.toString());
-                return parseJsonBeachesResponse(buffer.toString());
+                return deserializeJsonBeachesResponse(buffer.toString());
             }
 
         } catch (MalformedURLException e) {
@@ -125,7 +125,7 @@ public class BeachRemoteDataSource implements BeachDataSource {
         return null;
     }
 
-    private List<Beach> parseJsonBeachesResponse(String json) {
+    private List<Beach> deserializeJsonBeachesResponse(String json) {
         List<Beach> result = null;
         if (json != null && !json.isEmpty()) {
             try {
