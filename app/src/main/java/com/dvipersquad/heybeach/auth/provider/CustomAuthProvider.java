@@ -3,7 +3,7 @@ package com.dvipersquad.heybeach.auth.provider;
 import com.dvipersquad.heybeach.BuildConfig;
 import com.dvipersquad.heybeach.auth.User;
 import com.dvipersquad.heybeach.util.AppExecutors;
-import com.dvipersquad.heybeach.util.HttpHelper;
+import com.dvipersquad.heybeach.util.http.HttpHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,20 +75,21 @@ public class CustomAuthProvider implements AuthProvider {
                         new HttpHelper.HttpRequestCallback() {
                             @Override
                             public void onRequestSuccessful(String response, String token) {
-                                final User user = deserializeJsonUserResponse(response);
                                 appExecutors.mainThread().execute(new Runnable() {
                                     @Override
                                     public void run() {
+                                        currentUser = null;
                                         currentToken = null;
                                     }
                                 });
                             }
 
                             @Override
-                            public void onRequestFailed(final String error) {
+                            public void onRequestFailed(final String response) {
                                 appExecutors.mainThread().execute(new Runnable() {
                                     @Override
                                     public void run() {
+                                        currentUser = null;
                                         currentToken = null;
                                     }
                                 });
@@ -128,11 +129,12 @@ public class CustomAuthProvider implements AuthProvider {
                             }
 
                             @Override
-                            public void onRequestFailed(final String error) {
+                            public void onRequestFailed(final String response) {
+                                final String errorMessage = deserializeJsonErrorResponse(response);
                                 appExecutors.mainThread().execute(new Runnable() {
                                     @Override
                                     public void run() {
-                                        callback.onUserNotAvailable(error);
+                                        callback.onUserNotAvailable(errorMessage);
                                     }
                                 });
                             }
@@ -141,6 +143,30 @@ public class CustomAuthProvider implements AuthProvider {
             }
         };
         appExecutors.networkIO().execute(runnable);
+    }
+
+    private String deserializeJsonErrorResponse(String json) {
+        String result = null;
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                JSONObject jsonError = new JSONObject(json);
+                String message = jsonError.getString("errmsg");
+                int code = jsonError.getInt("code");
+
+                switch (code) {
+                    case 11000:
+                        result = "Email already in use";
+                        break;
+                    default:
+                        result = message;
+                        break;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
     }
 
     private User deserializeJsonUserResponse(String json) {

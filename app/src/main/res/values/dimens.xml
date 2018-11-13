@@ -5,4 +5,6 @@
     <dimen name="beach_card_corner_radius">5dp</dimen>
     <dimen name="beach_card_height">110dp</dimen>
     <dimen name="element_default_margin">10dp</dimen>
+    <dimen name="register_primary_button_text">15sp</dimen>
+    <dimen name="register_secondary_button_text">11sp</dimen>
 </resources>

@@ -1,5 +1,6 @@
 package com.dvipersquad.heybeach.beaches;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.dvipersquad.heybeach.R;
 import com.dvipersquad.heybeach.data.Beach;
+import com.dvipersquad.heybeach.register.RegisterActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +95,9 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
     }
 
     @Override
-    public void showUserLoginRegisterUI() {
+    public void showUserLoginUI() {
+        Intent intent = new Intent(getContext(), RegisterActivity.class);
+        startActivity(intent);
     }
 
     @Override

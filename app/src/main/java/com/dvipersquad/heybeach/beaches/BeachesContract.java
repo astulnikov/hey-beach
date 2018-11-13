@@ -16,7 +16,7 @@ public interface BeachesContract {
 
         void showUserProfileUI();
 
-        void showUserLoginRegisterUI();
+        void showUserLoginUI();
 
     }
 

@@ -51,7 +51,7 @@ public class BeachesPresenter implements BeachesContract.Presenter {
 
             @Override
             public void onUserNotAvailable(String errorMessage) {
-                beachesView.showUserLoginRegisterUI();
+                beachesView.showUserLoginUI();
             }
         });
     }
