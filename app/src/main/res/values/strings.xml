@@ -9,4 +9,7 @@
     <string name="login">Login</string>
     <string name="password_should_match">Both passwords should match</string>
     <string name="review_fields_information">Please review that all fields contain valid information</string>
+    <string name="profile">Profile</string>
+    <string name="dummy_email">test123@gmail.com</string>
+    <string name="user_logout">User Logout</string>
 </resources>

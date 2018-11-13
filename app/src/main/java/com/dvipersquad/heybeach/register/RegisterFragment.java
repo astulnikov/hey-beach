@@ -1,5 +1,7 @@
 package com.dvipersquad.heybeach.register;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,15 +13,15 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import com.dvipersquad.heybeach.R;
+import com.dvipersquad.heybeach.userdetails.UserDetailsActivity;
 
 public class RegisterFragment extends Fragment implements RegisterContract.View {
 
     private RegisterContract.Presenter presenter;
-
-    private boolean isLogin = true;
 
     public RegisterFragment() {
     }
@@ -93,6 +95,10 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (getContext() != null) {
+                    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
                 if (txtInputEmail.getError() == null && txtInputEmail.getText() != null &&
                         txtInputPassword.getError() == null && txtInputPassword.getText() != null &&
                         txtInputRepeatPassword.getError() == null && txtInputRepeatPassword.getText() != null) {
@@ -128,7 +134,8 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
 
     @Override
     public void showUserDetailsUI() {
-        this.showErrorMessage("User logged");
+        Intent intent = new Intent(getContext(), UserDetailsActivity.class);
+        startActivity(intent);
     }
 
     @Override

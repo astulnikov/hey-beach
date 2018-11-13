@@ -3,7 +3,7 @@ package com.dvipersquad.heybeach.register;
 import com.dvipersquad.heybeach.BasePresenter;
 import com.dvipersquad.heybeach.BaseView;
 
-public class RegisterContract {
+public interface RegisterContract {
 
     interface View extends BaseView<Presenter> {
 

@@ -5,4 +5,5 @@
     <color name="colorAccent">#03E2F6</color>
     <color name="colorPrimaryButtonText">#FFF</color>
     <color name="colorRegisterBackground">#FFF</color>
+    <color name="colorUserDetailsEmail">#000</color>
 </resources>

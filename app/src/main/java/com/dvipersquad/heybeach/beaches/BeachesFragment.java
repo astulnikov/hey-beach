@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import com.dvipersquad.heybeach.R;
 import com.dvipersquad.heybeach.data.Beach;
 import com.dvipersquad.heybeach.register.RegisterActivity;
+import com.dvipersquad.heybeach.userdetails.UserDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +93,8 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
 
     @Override
     public void showUserProfileUI() {
+        Intent intent = new Intent(getContext(), UserDetailsActivity.class);
+        startActivity(intent);
     }
 
     @Override

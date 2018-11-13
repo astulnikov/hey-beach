@@ -146,13 +146,21 @@ public class CustomAuthProvider implements AuthProvider {
     }
 
     private String deserializeJsonErrorResponse(String json) {
-        String result = null;
+        String result = "There was an unexpected error with your request. Try again later.";
 
         if (json != null && !json.isEmpty()) {
             try {
                 JSONObject jsonError = new JSONObject(json);
-                String message = jsonError.getString("errmsg");
-                int code = jsonError.getInt("code");
+                String message = "";
+                Integer code = 0;
+                if (jsonError.has("errors")) {
+                    JSONObject errors = jsonError.getJSONObject("errors");
+                    JSONObject firstError = errors.getJSONObject(errors.keys().next());
+                    message = firstError.getString("message");
+                } else if (jsonError.has("code")) {
+                    message = jsonError.getString("errmsg");
+                    code = jsonError.getInt("code");
+                }
 
                 switch (code) {
                     case 11000:

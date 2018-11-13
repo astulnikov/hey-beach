@@ -1,5 +1,8 @@
 package com.dvipersquad.heybeach.register;
 
+import android.text.TextUtils;
+import android.util.Patterns;
+
 import com.dvipersquad.heybeach.auth.User;
 import com.dvipersquad.heybeach.auth.provider.AuthProvider;
 
@@ -7,6 +10,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
     private static final String ERROR_EMPTY = "Field required";
     private static final String ERROR_MIN_LENGTH = "Field needs to have at least 6 characters";
+    private static final String ERROR_INVALID_EMAIL_FORMAT = "Email is not valid";
     private AuthProvider authProvider;
 
     private RegisterContract.View registerView;
@@ -22,19 +26,25 @@ public class RegisterPresenter implements RegisterContract.Presenter {
         authProvider.registerUser(email, password, new AuthProvider.LoadUserCallback() {
             @Override
             public void onUserLoaded(User user, String token) {
-                registerView.showUserDetailsUI();
+                if (registerView.isActive()) {
+                    registerView.showUserDetailsUI();
+                }
             }
 
             @Override
             public void onUserNotAvailable(String errorMessage) {
-                registerView.showErrorMessage(errorMessage);
+                if (registerView.isActive()) {
+                    registerView.showErrorMessage(errorMessage);
+                }
             }
         });
     }
 
     @Override
     public void onLoginSelected() {
-        registerView.showUserLoginUI();
+        if (registerView.isActive()) {
+            registerView.showUserLoginUI();
+        }
     }
 
     @Override
@@ -44,7 +54,15 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
     @Override
     public String validateEmail(String email) {
-        return validateField(email);
+        if (!isValidEmail(email)) {
+            return ERROR_INVALID_EMAIL_FORMAT;
+        } else {
+            return validateField(email);
+        }
+    }
+
+    private boolean isValidEmail(String email) {
+        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 
     @Override

@@ -7,4 +7,6 @@
     <dimen name="element_default_margin">10dp</dimen>
     <dimen name="register_primary_button_text">15sp</dimen>
     <dimen name="register_secondary_button_text">11sp</dimen>
+    <dimen name="userdetails_cover_image_height">150dp</dimen>
+    <dimen name="userdetails_user_email_text">25sp</dimen>
 </resources>

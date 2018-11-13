@@ -31,12 +31,16 @@ public class BeachesPresenter implements BeachesContract.Presenter {
         beachRepository.getBeaches(new BeachDataSource.LoadBeachesCallback() {
             @Override
             public void onBeachesLoaded(List<Beach> beaches) {
-                beachesView.showImages(beaches);
+                if (beachesView.isActive()) {
+                    beachesView.showImages(beaches);
+                }
             }
 
             @Override
             public void onDataNotAvailable() {
-                beachesView.showLoadingImagesError();
+                if (beachesView.isActive()) {
+                    beachesView.showLoadingImagesError();
+                }
             }
         });
     }
@@ -46,12 +50,16 @@ public class BeachesPresenter implements BeachesContract.Presenter {
         authProvider.getUser(new AuthProvider.LoadUserCallback() {
             @Override
             public void onUserLoaded(User user, String token) {
-                beachesView.showUserProfileUI();
+                if (beachesView.isActive()) {
+                    beachesView.showUserProfileUI();
+                }
             }
 
             @Override
             public void onUserNotAvailable(String errorMessage) {
-                beachesView.showUserLoginUI();
+                if (beachesView.isActive()) {
+                    beachesView.showUserLoginUI();
+                }
             }
         });
     }
