@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import com.dvipersquad.heybeach.R;
+import com.dvipersquad.heybeach.login.LoginActivity;
 import com.dvipersquad.heybeach.userdetails.UserDetailsActivity;
 
 public class RegisterFragment extends Fragment implements RegisterContract.View {
@@ -140,7 +141,9 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
 
     @Override
     public void showUserLoginUI() {
-
+        Intent intent = new Intent(getContext(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
     }
 
     @Override

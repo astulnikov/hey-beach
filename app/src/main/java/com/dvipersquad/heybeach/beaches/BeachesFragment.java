@@ -100,6 +100,7 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
     @Override
     public void showUserLoginUI() {
         Intent intent = new Intent(getContext(), RegisterActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
 

@@ -46,44 +46,27 @@
 
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/txtInputRepeatPasswordLayout"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnLogIn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/repeat_password"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:text="@string/login"
+        android:textSize="@dimen/register_primary_button_text"
+        android:textColor="@color/colorPrimaryButtonText"
         android:layout_marginTop="@dimen/element_default_margin"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputPasswordLayout">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/txtInputRepeatPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword" />
-
-    </android.support.design.widget.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/txtInputPasswordLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register"
-        android:textSize="@dimen/register_primary_button_text"
-        android:textColor="@color/colorPrimaryButtonText"
-        android:layout_marginTop="@dimen/element_default_margin"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputRepeatPasswordLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/btnLogIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
         android:textSize="@dimen/register_secondary_button_text"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_marginTop="@dimen/element_default_margin"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputRepeatPasswordLayout"
-        app:layout_constraintStart_toEndOf="@id/btnRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/txtInputPasswordLayout"
+        app:layout_constraintStart_toEndOf="@id/btnLogIn" />
 
 </android.support.constraint.ConstraintLayout>

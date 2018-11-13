@@ -21,6 +21,9 @@ public class CustomAuthProvider implements AuthProvider {
     private static final String GET_USER_METHOD = "GET";
     private static final String LOGOUT_USER_METHOD = "DELETE";
     private static final String TAG = CustomAuthProvider.class.getSimpleName();
+    private static final String ERROR_DEFAULT = "There was an unexpected error with your request. Try again later.";
+    private static final String ERROR_DUPLICATED_EMAIL = "Email already in use.";
+    private static final String ERROR_INVALID_EMAIL_PASSWORD = "Invalid email / password combination.";
     private AppExecutors appExecutors;
 
     private static CustomAuthProvider INSTANCE = null;
@@ -146,7 +149,7 @@ public class CustomAuthProvider implements AuthProvider {
     }
 
     private String deserializeJsonErrorResponse(String json) {
-        String result = "There was an unexpected error with your request. Try again later.";
+        String result = ERROR_DEFAULT;
 
         if (json != null && !json.isEmpty()) {
             try {
@@ -164,7 +167,7 @@ public class CustomAuthProvider implements AuthProvider {
 
                 switch (code) {
                     case 11000:
-                        result = "Email already in use";
+                        result = ERROR_DUPLICATED_EMAIL;
                         break;
                     default:
                         result = message;
@@ -173,6 +176,8 @@ public class CustomAuthProvider implements AuthProvider {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        } else {
+            result = ERROR_INVALID_EMAIL_PASSWORD;
         }
         return result;
     }
