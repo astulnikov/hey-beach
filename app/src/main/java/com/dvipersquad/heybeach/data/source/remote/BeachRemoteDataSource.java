@@ -29,6 +29,7 @@ public class BeachRemoteDataSource implements BeachDataSource {
     private final static String GET_BEACHES_ENDPOINT = "beaches?";
     private final static String GET_BEACHES_PAGE_PARAMETER = "page=";
     private static final int HTTP_OK = 200;
+    private static final int DEFAULT_PAGE = 0;
     private static BeachRemoteDataSource INSTANCE;
 
     private AppExecutors appExecutors;
@@ -54,7 +55,7 @@ public class BeachRemoteDataSource implements BeachDataSource {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                final List<Beach> beaches = getBeachesFromAPI();
+                final List<Beach> beaches = getBeachesFromAPI(DEFAULT_PAGE);
                 appExecutors.mainThread().execute(new Runnable() {
                     @Override
                     public void run() {
@@ -72,12 +73,35 @@ public class BeachRemoteDataSource implements BeachDataSource {
         appExecutors.networkIO().execute(runnable);
     }
 
-    private List<Beach> getBeachesFromAPI() {
+    @Override
+    public void getBeachesNextPage(final int page, final LoadBeachesCallback callback) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                final List<Beach> beaches = getBeachesFromAPI(page);
+                appExecutors.mainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (beaches == null || beaches.isEmpty()) {
+                            // This will be called if the table is new or just empty.
+                            callback.onDataNotAvailable();
+                        } else {
+                            callback.onBeachesLoaded(beaches);
+                        }
+                    }
+                });
+            }
+        };
+
+        appExecutors.networkIO().execute(runnable);
+    }
+
+    private List<Beach> getBeachesFromAPI(int page) {
         HttpURLConnection connection = null;
         BufferedReader reader = null;
 
         try {
-            String finalUrl = BuildConfig.baseApiUrl + GET_BEACHES_ENDPOINT;
+            String finalUrl = BuildConfig.baseApiUrl + GET_BEACHES_ENDPOINT + GET_BEACHES_PAGE_PARAMETER + page;
             Log.d(TAG, "Request Url:" + finalUrl);
             URL url = new URL(finalUrl);
             connection = (HttpURLConnection) url.openConnection();

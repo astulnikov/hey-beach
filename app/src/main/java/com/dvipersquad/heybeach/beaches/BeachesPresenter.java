@@ -14,6 +14,8 @@ public class BeachesPresenter implements BeachesContract.Presenter {
     private final BeachesContract.View beachesView;
     private final AuthProvider authProvider;
 
+    private int currentPage = 0;
+
     public BeachesPresenter(BeachRepository beachRepository, BeachesContract.View beachesView, AuthProvider authProvider) {
         this.beachRepository = beachRepository;
         this.beachesView = beachesView;
@@ -28,10 +30,14 @@ public class BeachesPresenter implements BeachesContract.Presenter {
 
     @Override
     public void loadImages() {
+        if (beachesView.isActive()) {
+            beachesView.toggleLoadingIndicator(true);
+        }
         beachRepository.getBeaches(new BeachDataSource.LoadBeachesCallback() {
             @Override
             public void onBeachesLoaded(List<Beach> beaches) {
                 if (beachesView.isActive()) {
+                    beachesView.toggleLoadingIndicator(false);
                     beachesView.showImages(beaches);
                 }
             }
@@ -39,6 +45,7 @@ public class BeachesPresenter implements BeachesContract.Presenter {
             @Override
             public void onDataNotAvailable() {
                 if (beachesView.isActive()) {
+                    beachesView.toggleLoadingIndicator(false);
                     beachesView.showLoadingImagesError();
                 }
             }
@@ -59,6 +66,32 @@ public class BeachesPresenter implements BeachesContract.Presenter {
             public void onUserNotAvailable(String errorMessage) {
                 if (beachesView.isActive()) {
                     beachesView.showUserLoginUI();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void loadNextPage() {
+        if (beachesView.isActive()) {
+            beachesView.toggleLoadingIndicator(true);
+        }
+        currentPage++;
+        beachRepository.getBeachesNextPage(currentPage, new BeachDataSource.LoadBeachesCallback() {
+            @Override
+            public void onBeachesLoaded(List<Beach> beaches) {
+                if (beachesView.isActive()) {
+                    beachesView.toggleLoadingIndicator(false);
+                    beachesView.showImages(beaches);
+                }
+            }
+
+            @Override
+            public void onDataNotAvailable() {
+                currentPage--;
+                if (beachesView.isActive()) {
+                    beachesView.toggleLoadingIndicator(false);
+                    beachesView.showLoadingImagesError();
                 }
             }
         });

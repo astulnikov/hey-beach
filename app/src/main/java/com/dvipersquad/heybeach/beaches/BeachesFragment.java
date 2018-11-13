@@ -14,11 +14,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.dvipersquad.heybeach.R;
 import com.dvipersquad.heybeach.data.Beach;
 import com.dvipersquad.heybeach.register.RegisterActivity;
 import com.dvipersquad.heybeach.userdetails.UserDetailsActivity;
+import com.dvipersquad.heybeach.util.EndlessRecyclerViewScrollListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,22 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
     private BeachesAdapter beachesAdapter;
+
+    private ProgressBar progressBar;
+
+    private boolean isLoading;
+
+    private boolean isLastPage = false;
+
+    private EndlessRecyclerViewScrollListener paginationListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+        @Override
+        public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+            if (!isLoading && !isLastPage) {
+                isLoading = true;
+                presenter.loadNextPage();
+            }
+        }
+    };
 
     public BeachesFragment() {
 
@@ -51,9 +69,11 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.beaches_frag, container, false);
+        progressBar = rootView.findViewById(R.id.progressBar);
         RecyclerView recyclerBeaches = rootView.findViewById(R.id.recyclerBeaches);
         recyclerBeaches.setHasFixedSize(true);
         recyclerBeaches.setLayoutManager(linearLayoutManager);
+        recyclerBeaches.addOnScrollListener(paginationListener);
         recyclerBeaches.setAdapter(beachesAdapter);
         return rootView;
     }
@@ -61,6 +81,7 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
     @Override
     public void onResume() {
         super.onResume();
+        isLoading = true;
         presenter.start();
     }
 
@@ -83,7 +104,8 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
 
     @Override
     public void showImages(List<Beach> beaches) {
-        beachesAdapter.replaceData(beaches);
+        isLoading = false;
+        beachesAdapter.addData(beaches);
     }
 
     @Override
@@ -102,6 +124,15 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
         Intent intent = new Intent(getContext(), RegisterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
+    }
+
+    @Override
+    public void toggleLoadingIndicator(boolean active) {
+        if (active) {
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     @Override

@@ -18,6 +18,8 @@ public interface BeachesContract {
 
         void showUserLoginUI();
 
+        void toggleLoadingIndicator(boolean active);
+
     }
 
     interface Presenter extends BasePresenter {
@@ -26,5 +28,6 @@ public interface BeachesContract {
 
         void openUserProfile();
 
+        void loadNextPage();
     }
 }

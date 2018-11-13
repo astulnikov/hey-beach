@@ -15,4 +15,5 @@ public interface BeachDataSource {
 
     void getBeaches(LoadBeachesCallback callback);
 
+    void getBeachesNextPage(int page, LoadBeachesCallback callback);
 }
