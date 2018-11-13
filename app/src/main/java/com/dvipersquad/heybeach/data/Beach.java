@@ -5,6 +5,7 @@ public class Beach {
     private String id;
     private String name;
     private String url;
+    private String title;
     private int width;
     private int height;
 
@@ -12,6 +13,15 @@ public class Beach {
         this.id = id;
         this.name = name;
         this.url = url;
+        this.width = width;
+        this.height = height;
+    }
+
+    public Beach(String id, String name, String url, String title, int width, int height) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+        this.title = title;
         this.width = width;
         this.height = height;
     }
@@ -38,6 +48,14 @@ public class Beach {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getWidth() {

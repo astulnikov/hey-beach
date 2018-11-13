@@ -12,4 +12,5 @@
     <string name="profile">Profile</string>
     <string name="dummy_email">test123@gmail.com</string>
     <string name="user_logout">User Logout</string>
+    <string name="dummy_title">Paradise Beach</string>
 </resources>

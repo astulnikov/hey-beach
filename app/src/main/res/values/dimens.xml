@@ -9,4 +9,5 @@
     <dimen name="register_secondary_button_text">11sp</dimen>
     <dimen name="userdetails_cover_image_height">150dp</dimen>
     <dimen name="userdetails_user_email_text">25sp</dimen>
+    <dimen name="beach_card_title_text">15sp</dimen>
 </resources>

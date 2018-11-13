@@ -3,11 +3,11 @@ package com.dvipersquad.heybeach.beaches;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.dvipersquad.heybeach.Injection;
 import com.dvipersquad.heybeach.R;
@@ -41,7 +41,7 @@ public class BeachesAdapter extends RecyclerView.Adapter<BeachesAdapter.ViewHold
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Beach beach = beaches.get(position);
 
-        if (!TextUtils.isEmpty(beach.getUrl())) {
+        if (beach.getUrl() != null && !beach.getUrl().isEmpty()) {
             imageLoader.loadImage(BeachUrlBuilder.generate(beach.getUrl()), new ImageLoader.LoadImageCallback() {
                 @Override
                 public void onImageLoaded(Bitmap bitmap) {
@@ -57,6 +57,15 @@ public class BeachesAdapter extends RecyclerView.Adapter<BeachesAdapter.ViewHold
                     holder.imgPlaceholderIcon.setVisibility(View.VISIBLE);
                 }
             });
+        }
+
+        if (beach.getTitle() != null && !beach.getTitle().isEmpty()) {
+            holder.viewImageOverlay.setVisibility(View.VISIBLE);
+            holder.txtBeachTitle.setText(beach.getTitle());
+            holder.txtBeachTitle.setVisibility(View.VISIBLE);
+        } else {
+            holder.viewImageOverlay.setVisibility(View.GONE);
+            holder.txtBeachTitle.setVisibility(View.GONE);
         }
     }
 
@@ -87,12 +96,16 @@ public class BeachesAdapter extends RecyclerView.Adapter<BeachesAdapter.ViewHold
         View layout;
         ImageView imgPlaceholderIcon;
         ImageView imgBeachPhoto;
+        View viewImageOverlay;
+        TextView txtBeachTitle;
 
         ViewHolder(View itemView) {
             super(itemView);
             layout = itemView;
             imgBeachPhoto = itemView.findViewById(R.id.imgBeachPhoto);
             imgPlaceholderIcon = itemView.findViewById(R.id.imgPlaceholderIcon);
+            viewImageOverlay = itemView.findViewById(R.id.viewImageOverlay);
+            txtBeachTitle = itemView.findViewById(R.id.txtBeachTitle);
         }
     }
 
