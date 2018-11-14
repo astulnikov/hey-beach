@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#39CCFF</color>
+    <color name="colorPrimaryDark">#2AB6FF</color>
+    <color name="colorAccent">#03E2F6</color>
+    <color name="colorPrimaryButtonText">#FFF</color>
+    <color name="colorRegisterBackground">#FFF</color>
+    <color name="colorUserDetailsEmail">#000</color>
+    <color name="colorBeachImageOverlay">#46000000</color>
+    <color name="colorBeachCardTitle">#FFF</color>
+    <color name="colorBeachesActionBarBackground">#FFF</color>
 </resources>

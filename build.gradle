@@ -25,3 +25,19 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+// All library versions
+ext {
+    // Properties
+    minSdkVersion = 23
+    targetSdkVersion = 28
+    compileSdkVersion = 28
+
+    // Dependencies
+    supportLibraryVersion = '28.0.0'
+    junitVersion = '4.12'
+    runnerVersion = '1.0.1'
+    rulesVersion = '1.0.1'
+    constraintLayoutVersion = '1.1.3'
+}

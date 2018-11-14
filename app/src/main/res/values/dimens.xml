@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="beach_card_margin">4dp</dimen>
+    <dimen name="beach_card_elevation">3dp</dimen>
+    <dimen name="beach_card_corner_radius">5dp</dimen>
+    <dimen name="beach_card_height">110dp</dimen>
+    <dimen name="element_default_margin">10dp</dimen>
+    <dimen name="register_primary_button_text">15sp</dimen>
+    <dimen name="register_secondary_button_text">11sp</dimen>
+    <dimen name="userdetails_cover_image_height">150dp</dimen>
+    <dimen name="userdetails_user_email_text">25sp</dimen>
+    <dimen name="beach_card_title_text">15sp</dimen>
+    <dimen name="beach_card_title_min_text">8sp</dimen>
+    <dimen name="beach_card_title_max_text">100sp</dimen>
+    <dimen name="beach_card_title_text_step_granularity">2sp</dimen>
+</resources>

@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Hey Beach</string>
+    <string name="error_loading_images">We\'re sorry. There was an error loading the images. Please try again later</string>
+    <string name="show_user_profile">Show user profile</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="password_should_match">Both passwords should match</string>
+    <string name="review_fields_information">Please review that all fields contain valid information</string>
+    <string name="profile">Profile</string>
+    <string name="dummy_email">test123@gmail.com</string>
+    <string name="user_logout">User Logout</string>
+    <string name="dummy_title">Paradise Beach</string>
+    <string name="no_more_images_available">There are no more images available.</string>
 </resources>
