@@ -13,14 +13,14 @@ public class BeachRepository implements BeachDataSource {
 
     private static BeachRepository INSTANCE = null;
 
-    private BeachDataSource imageRemoteDataSource;
+    private BeachDataSource beachRemoteDataSource;
 
     private Map<String, Beach> cachedBeaches;
 
     private boolean cacheIsDirty = false;
 
-    private BeachRepository(@NonNull BeachDataSource imageRemoteDataSource) {
-        this.imageRemoteDataSource = imageRemoteDataSource;
+    private BeachRepository(@NonNull BeachDataSource beachRemoteDataSource) {
+        this.beachRemoteDataSource = beachRemoteDataSource;
     }
 
     public static BeachRepository getInstance(BeachDataSource imageRemoteDataSource) {
@@ -40,7 +40,7 @@ public class BeachRepository implements BeachDataSource {
             callback.onBeachesLoaded(new ArrayList<>(cachedBeaches.values()));
             return;
         }
-        imageRemoteDataSource.getBeaches(new LoadBeachesCallback() {
+        beachRemoteDataSource.getBeaches(new LoadBeachesCallback() {
             @Override
             public void onBeachesLoaded(List<Beach> beaches) {
                 refreshCache(beaches);
@@ -56,7 +56,7 @@ public class BeachRepository implements BeachDataSource {
 
     @Override
     public void getBeachesNextPage(int page, final LoadBeachesCallback callback) {
-        imageRemoteDataSource.getBeachesNextPage(page, new LoadBeachesCallback() {
+        beachRemoteDataSource.getBeachesNextPage(page, new LoadBeachesCallback() {
             @Override
             public void onBeachesLoaded(List<Beach> beaches) {
                 refreshCache(beaches);

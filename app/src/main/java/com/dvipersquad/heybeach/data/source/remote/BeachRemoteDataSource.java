@@ -83,7 +83,6 @@ public class BeachRemoteDataSource implements BeachDataSource {
                     @Override
                     public void run() {
                         if (beaches == null || beaches.isEmpty()) {
-                            // This will be called if the table is new or just empty.
                             callback.onDataNotAvailable();
                         } else {
                             callback.onBeachesLoaded(beaches);

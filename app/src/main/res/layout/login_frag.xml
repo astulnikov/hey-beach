@@ -1,72 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/element_default_margin"
+    android:orientation="vertical"
     android:background="@color/colorRegisterBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/imgHeader"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/heybeach_header"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/txtInputEmailLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintTop_toBottomOf="@id/imgHeader">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editTxtEmail"
+        <ImageView
+            android:id="@+id/imgHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:src="@drawable/heybeach_header"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/txtInputPasswordLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginTop="@dimen/element_default_margin"
-        app:layout_constraintTop_toBottomOf="@id/txtInputEmailLayout">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editTxtPassword"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txtInputEmailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:hint="@string/email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintTop_toBottomOf="@id/imgHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editTxtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxWidth="100dp"
+                android:inputType="textEmailAddress" />
 
-    <Button
-        android:id="@+id/btnLogIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:textSize="@dimen/register_primary_button_text"
-        android:textColor="@color/colorPrimaryButtonText"
-        android:layout_marginTop="@dimen/element_default_margin"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputPasswordLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register"
-        android:textSize="@dimen/register_secondary_button_text"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_marginTop="@dimen/element_default_margin"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputPasswordLayout"
-        app:layout_constraintStart_toEndOf="@id/btnLogIn" />
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txtInputPasswordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="@dimen/element_default_margin"
+            app:layout_constraintTop_toBottomOf="@id/txtInputEmailLayout">
 
-</android.support.constraint.ConstraintLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editTxtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnLogIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:textSize="@dimen/register_primary_button_text"
+            android:textColor="@color/colorPrimaryButtonText"
+            android:layout_marginTop="@dimen/element_default_margin"
+            app:layout_constraintTop_toBottomOf="@+id/txtInputPasswordLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:textSize="@dimen/register_secondary_button_text"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_marginTop="@dimen/element_default_margin"
+            app:layout_constraintTop_toBottomOf="@+id/txtInputPasswordLayout"
+            app:layout_constraintStart_toEndOf="@id/btnLogIn" />
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

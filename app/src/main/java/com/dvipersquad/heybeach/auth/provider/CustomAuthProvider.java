@@ -189,8 +189,7 @@ public class CustomAuthProvider implements AuthProvider {
                 JSONObject jsonUser = new JSONObject(json);
                 result = new User(
                         jsonUser.getString("_id"),
-                        jsonUser.getString("email"),
-                        null
+                        jsonUser.getString("email")
                 );
             } catch (JSONException e) {
                 e.printStackTrace();

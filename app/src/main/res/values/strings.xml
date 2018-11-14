@@ -13,4 +13,5 @@
     <string name="dummy_email">test123@gmail.com</string>
     <string name="user_logout">User Logout</string>
     <string name="dummy_title">Paradise Beach</string>
+    <string name="no_more_images_available">There are no more images available.</string>
 </resources>

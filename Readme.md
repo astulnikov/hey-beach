@@ -18,6 +18,8 @@ The application uses MVP Architecture. It applies the repository pattern to prov
  * *User Details*: Allows users to see stored information
  
  ### Next Steps
+ * Save state on configuration changes (rotation)
+ * Add different layouts for bigger screen sizes
  * Improve list items layout and masonry using Google Flexbox - layout
  * Use local storage (SQLite) to cache API results and be able to show then without connection
  * Add Disk cache for images to prevent reloading from network when memory is limited, configuration 

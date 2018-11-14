@@ -28,7 +28,8 @@ import java.util.List;
 
 public class BeachesFragment extends Fragment implements BeachesContract.View {
 
-    private static final int COLUMNS = 2;
+    private static final int COLUMNS = 3;
+    private static final int CARD_SEPARATION = 10;
     private BeachesContract.Presenter presenter;
 
     private StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(COLUMNS, StaggeredGridLayoutManager.VERTICAL);
@@ -72,7 +73,7 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.beaches_frag, container, false);
         progressBar = rootView.findViewById(R.id.progressBar);
-        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(CARD_SEPARATION);
         RecyclerView recyclerBeaches = rootView.findViewById(R.id.recyclerBeaches);
         recyclerBeaches.setHasFixedSize(true);
         recyclerBeaches.setLayoutManager(staggeredGridLayoutManager);
@@ -114,7 +115,10 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
 
     @Override
     public void showLoadingImagesError() {
-        Snackbar.make(getView(), getString(R.string.error_loading_images), Snackbar.LENGTH_LONG).show();
+        if (getView() != null) {
+            Snackbar.make(getView(), getString(R.string.no_more_images_available), Snackbar.LENGTH_LONG).show();
+        }
+
     }
 
     @Override
