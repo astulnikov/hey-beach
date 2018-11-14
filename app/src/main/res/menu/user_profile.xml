@@ -6,6 +6,6 @@
         android:id="@+id/showUserProfile"
         android:title="@string/show_user_profile"
         app:showAsAction="always"
-        android:icon="@drawable/ic_person_white_24dp" />
+        android:icon="@drawable/ic_person_accent_24dp" />
 
 </menu>

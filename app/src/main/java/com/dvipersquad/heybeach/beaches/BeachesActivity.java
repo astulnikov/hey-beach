@@ -1,5 +1,6 @@
 package com.dvipersquad.heybeach.beaches;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,11 @@ public class BeachesActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.beaches_act);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getColor(R.color.colorBeachesActionBarBackground)));
+        getSupportActionBar().setLogo(R.drawable.heybeach_header);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         BeachesFragment beachesFragment =
                 (BeachesFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);

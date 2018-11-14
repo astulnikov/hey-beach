@@ -8,4 +8,5 @@
     <color name="colorUserDetailsEmail">#000</color>
     <color name="colorBeachImageOverlay">#46000000</color>
     <color name="colorBeachCardTitle">#FFF</color>
+    <color name="colorBeachesActionBarBackground">#FFF</color>
 </resources>
