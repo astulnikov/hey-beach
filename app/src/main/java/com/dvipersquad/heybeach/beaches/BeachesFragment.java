@@ -6,8 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,15 +21,17 @@ import com.dvipersquad.heybeach.data.Beach;
 import com.dvipersquad.heybeach.register.RegisterActivity;
 import com.dvipersquad.heybeach.userdetails.UserDetailsActivity;
 import com.dvipersquad.heybeach.util.EndlessRecyclerViewScrollListener;
+import com.dvipersquad.heybeach.util.SpacesItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BeachesFragment extends Fragment implements BeachesContract.View {
 
+    private static final int COLUMNS = 2;
     private BeachesContract.Presenter presenter;
 
-    private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+    private StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(COLUMNS, StaggeredGridLayoutManager.VERTICAL);
 
     private BeachesAdapter beachesAdapter;
 
@@ -39,7 +41,7 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
 
     private boolean isLastPage = false;
 
-    private EndlessRecyclerViewScrollListener paginationListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+    private EndlessRecyclerViewScrollListener paginationListener = new EndlessRecyclerViewScrollListener(staggeredGridLayoutManager) {
         @Override
         public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
             if (!isLoading && !isLastPage) {
@@ -70,10 +72,12 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.beaches_frag, container, false);
         progressBar = rootView.findViewById(R.id.progressBar);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
         RecyclerView recyclerBeaches = rootView.findViewById(R.id.recyclerBeaches);
         recyclerBeaches.setHasFixedSize(true);
-        recyclerBeaches.setLayoutManager(linearLayoutManager);
+        recyclerBeaches.setLayoutManager(staggeredGridLayoutManager);
         recyclerBeaches.addOnScrollListener(paginationListener);
+        recyclerBeaches.addItemDecoration(decoration);
         recyclerBeaches.setAdapter(beachesAdapter);
         return rootView;
     }

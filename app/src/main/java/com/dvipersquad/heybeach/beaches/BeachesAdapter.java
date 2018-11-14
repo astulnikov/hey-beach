@@ -13,6 +13,7 @@ import com.dvipersquad.heybeach.Injection;
 import com.dvipersquad.heybeach.R;
 import com.dvipersquad.heybeach.data.Beach;
 import com.dvipersquad.heybeach.util.BeachUrlBuilder;
+import com.dvipersquad.heybeach.util.SizedImageView;
 import com.dvipersquad.heybeach.util.imageloading.ImageLoader;
 
 import java.util.ArrayList;
@@ -40,6 +41,10 @@ public class BeachesAdapter extends RecyclerView.Adapter<BeachesAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Beach beach = beaches.get(position);
+
+        float aspectRatio = beach.getHeight() / beach.getWidth();
+
+        holder.imgBeachPhoto.setAspectRatio(aspectRatio);
 
         if (beach.getUrl() != null && !beach.getUrl().isEmpty()) {
             imageLoader.loadImage(BeachUrlBuilder.generate(beach.getUrl()), new ImageLoader.LoadImageCallback() {
@@ -95,7 +100,7 @@ public class BeachesAdapter extends RecyclerView.Adapter<BeachesAdapter.ViewHold
 
         View layout;
         ImageView imgPlaceholderIcon;
-        ImageView imgBeachPhoto;
+        SizedImageView imgBeachPhoto;
         View viewImageOverlay;
         TextView txtBeachTitle;
 
