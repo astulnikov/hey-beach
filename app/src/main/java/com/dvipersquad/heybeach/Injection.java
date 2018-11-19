@@ -13,7 +13,7 @@ public class Injection {
         return BeachRepository.getInstance(BeachRemoteDataSource.getInstance(new AppExecutors()));
     }
 
-    public static ImageLoader provideImageLoader() {
+    public static ImageLoader provideImageLoader() { // TODO instances creation control
         return new CustomImageLoader(new AppExecutors());
     }
 

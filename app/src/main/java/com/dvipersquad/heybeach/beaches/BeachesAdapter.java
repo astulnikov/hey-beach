@@ -64,6 +64,7 @@ public class BeachesAdapter extends RecyclerView.Adapter<BeachesAdapter.ViewHold
             });
         }
 
+        // TODO Why title?
         if (beach.getTitle() != null && !beach.getTitle().isEmpty()) {
             holder.viewImageOverlay.setVisibility(View.VISIBLE);
             holder.txtBeachTitle.setText(beach.getTitle());
@@ -79,7 +80,7 @@ public class BeachesAdapter extends RecyclerView.Adapter<BeachesAdapter.ViewHold
         return beaches.size();
     }
 
-    void replaceData(List<Beach> beaches) {
+    void replaceData(List<Beach> beaches) { // TODO just forgot to remove I believe
         if (this.beaches == null) {
             this.beaches = new ArrayList<>();
         }
@@ -92,8 +93,10 @@ public class BeachesAdapter extends RecyclerView.Adapter<BeachesAdapter.ViewHold
         if (this.beaches == null) {
             this.beaches = new ArrayList<>();
         }
+        int start = this.beaches.size();
+
         this.beaches.addAll(beaches);
-        notifyDataSetChanged();
+        notifyItemRangeInserted(start, beaches.size()); // TODO Would be more nice if notified about what has been changed (Try to run app with notifyDataSetChanged() and with this version)
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

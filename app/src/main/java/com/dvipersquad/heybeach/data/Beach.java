@@ -5,7 +5,7 @@ public class Beach {
     private String id;
     private String name;
     private String url;
-    private String title;
+    private String title;//TODO where it comes form? title?
     private int width;
     private int height;
 

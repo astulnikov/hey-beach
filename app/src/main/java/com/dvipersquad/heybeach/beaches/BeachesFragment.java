@@ -73,7 +73,7 @@ public class BeachesFragment extends Fragment implements BeachesContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.beaches_frag, container, false);
         progressBar = rootView.findViewById(R.id.progressBar);
-        SpacesItemDecoration decoration = new SpacesItemDecoration(CARD_SEPARATION);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(CARD_SEPARATION); //TODO 10 What?
         RecyclerView recyclerBeaches = rootView.findViewById(R.id.recyclerBeaches);
         recyclerBeaches.setHasFixedSize(true);
         recyclerBeaches.setLayoutManager(staggeredGridLayoutManager);

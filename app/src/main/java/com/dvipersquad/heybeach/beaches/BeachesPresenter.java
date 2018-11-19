@@ -11,7 +11,7 @@ import java.util.List;
 public class BeachesPresenter implements BeachesContract.Presenter {
 
     private final BeachRepository beachRepository;
-    private final BeachesContract.View beachesView;
+    private final BeachesContract.View beachesView; //TODO Not clearing the ref to a view in general is a bad practice
     private final AuthProvider authProvider;
 
     private int currentPage = 0;

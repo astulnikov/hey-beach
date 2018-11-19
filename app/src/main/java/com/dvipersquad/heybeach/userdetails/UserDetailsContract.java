@@ -6,7 +6,7 @@ import com.dvipersquad.heybeach.auth.User;
 
 public interface UserDetailsContract {
 
-    interface View extends BaseView<UserDetailsContract.Presenter> {
+    interface View extends BaseView<Presenter> {
 
         void showUserLogOutUI();
 

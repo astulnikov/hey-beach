@@ -5,7 +5,7 @@ import com.dvipersquad.heybeach.BaseView;
 
 public interface LoginContract {
 
-    interface View extends BaseView<LoginContract.Presenter> {
+    interface View extends BaseView<Presenter> {
 
         void showErrorMessage(String message);
 

@@ -17,6 +17,7 @@
             android:src="@drawable/placeholder"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!--tools namespace for preview text filling-->
         <TextView
             android:id="@+id/txtUserEmail"
             android:layout_width="wrap_content"

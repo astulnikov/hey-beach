@@ -13,7 +13,7 @@ public class BeachRepository implements BeachDataSource {
 
     private static BeachRepository INSTANCE = null;
 
-    private BeachDataSource beachRemoteDataSource;
+    private BeachDataSource beachRemoteDataSource; // TODO How it's called when you use the same interface inside implementation. As for me it's super easy to mix
 
     private Map<String, Beach> cachedBeaches;
 
@@ -32,7 +32,7 @@ public class BeachRepository implements BeachDataSource {
 
     public static void destroyInstance() {
         INSTANCE = null;
-    }
+    } // TODO Why this if not used
 
     @Override
     public void getBeaches(final LoadBeachesCallback callback) {

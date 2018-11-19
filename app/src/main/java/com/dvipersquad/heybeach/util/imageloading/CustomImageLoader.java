@@ -71,7 +71,7 @@ public class CustomImageLoader implements ImageLoader {
         try {
             URL url = new URL(imageUri);
             connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
+            connection.setDoInput(true); // TODO Why to set explicitly?
             connection.connect();
             InputStream is = connection.getInputStream();
 

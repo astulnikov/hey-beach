@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "com.dvipersquad.heybeach"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion // TODO http doesn't work for api 28+
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
